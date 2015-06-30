@@ -65,9 +65,9 @@
                     <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_perfil">
                     <h3>Foto</h3>
                     <h3>Nombre: {{$user->name}}</h3>
-                    <h3>Siguiendo: 12</h3>
-                    <h3>Seguidores: 35</h3>
-                    <h3>Publicaciones: 25</h3>
+                    <h3>Siguiendo: {{$user->idols->count()-1}}</h3>
+                    <h3>Seguidores: {{App\Idol::where('idol_id', $user->id)->count()-1}}</h3>
+                    <h3>Publicaciones: {{$user->posts->count()}}</h3>
 
 
                     @if($user->id != Auth::id())
@@ -82,7 +82,7 @@
                     {!! Form::close() !!}
                 </div>
                 <div>
-                    <table class="table-bordered">
+                    <table class="table">
                         <tbody>
 
                         @foreach($posts as $post)
@@ -90,7 +90,7 @@
                                         <td colspan="6"  id="separador"></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" colspan="1"><img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_icono"></td>
+                                        <td rowspan="2" colspan="1"><img src="{{ ($post->user->image == null) ? '/uploads/15707.jpg' : $post->user->image}}" alt="" id="img_icono"></td>
                                         <td colspan="5">{{$post->user->name}}</td>
                                     </tr>
                                     <tr>
@@ -100,15 +100,7 @@
                                         <td colspan="6">{{$post->body}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1" class="boton">
 
-                                            <button type="button" class="btn btn-info" id="btn-review">
-                                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>5
-                                            </button>
-                                            <div id="form_review">
-                                                @include('partials.form_comentar')
-                                            </div>
-                                        </td>
                                         <td colspan="1" class="boton">
 
                                                 @include('partials.form_repostear')
@@ -124,8 +116,15 @@
                                                 <span class="glyphicon glyphicon-thumbs-down"></span>23
                                             </a>
                                         </td>
-                                        <td colspan="2"></td>
+                                        <td colspan="3"></td>
 
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="boton">Comentar
+
+                                            @include('partials.form_comentar')
+
+                                        </td>
                                     </tr>
 
                         @endforeach

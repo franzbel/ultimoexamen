@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 
 class ProfilesController extends Controller
@@ -50,5 +51,13 @@ class ProfilesController extends Controller
         return view('profile.index', compact('user'));
     }
 
+    public function searchPerson(Request $request)
+    {
+        $name = Input::get('nombre');
+        $users = User::where('name',$name)->get();
+
+        return view('profile.found', compact('users'));
+
+    }
 
 }

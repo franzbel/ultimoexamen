@@ -8,8 +8,12 @@
         .boton{
             float: left;
             padding: 0px 5px 0px 0px;
+
         }
-        #form_review{
+        .form_comentar{
+            display: none;
+        }
+        .form_review{
             display: none;
         }
         #separador{
@@ -22,27 +26,7 @@
     </style>
 @endsection
 
-@section('script')
-    <script>
 
-        function mostrarForm(){
-            var  boton = document.getElementById("btn-review");
-            var formulario = document.getElementById("form_review");
-            boton.addEventListener("click", MouseClick);
-            function MouseClick(e){
-                boton.style.display = "none";
-                formulario.style.display = "initial";
-            }
-        }
-
-        function cargarFunciones(){
-
-            mostrarForm();
-        }
-
-        window.onload = cargarFunciones;
-    </script>
-@endsection
 @section('content')
     <div class="container">
         <div class="row">
@@ -76,17 +60,6 @@
                             <tr>
                                 <td colspan="1" class="boton">
 
-
-                                    <button type="button" class="btn btn-info" id="btn-review">
-                                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>5
-                                    </button>
-                                    <div id="form_review">
-                                        @include('partials.form_comentar')
-                                    </div>
-
-                                </td>
-                                <td colspan="1" class="boton">
-
                                     @include('partials.form_repostear')
                                 </td>
                                 <td colspan="1" class="boton">
@@ -99,7 +72,13 @@
                                         <span class="glyphicon glyphicon-thumbs-down"></span>23
                                     </a>
                                 </td>
-                                <td colspan="2"></td>
+                                <td colspan="3"></td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="boton">Comentar
+                                    @include('partials.form_comentar')
+                                </td>
                             </tr>
 
                         @endforeach
@@ -117,3 +96,28 @@
 @endsection
 
 
+@section('script')
+    <script>
+
+        function mostrarForm(){
+
+            var formulario = document.getElementsByClassName('comentario');
+
+            for (var i=0; i<formulario.length; i++){
+                formulario.item(i).addEventListener("click", MouseClick);
+            }
+
+            function MouseClick(e){
+                e.target..setAttribute('type','textarea');
+            }
+
+        }
+
+        function cargarFunciones(){
+
+            mostrarForm();
+        }
+
+        window.onload = cargarFunciones;
+    </script>
+@endsection

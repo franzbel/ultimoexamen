@@ -34,9 +34,16 @@ Route::post('/save', [
 Route::get('/index', [
     'as' => 'show_index', 'uses' => 'ProfilesController@showIndex'
 ]);
+
+Route::post('/search', [
+    'as' => 'search', 'uses' => 'ProfilesController@searchPerson'
+]);
+
+
 Route::get('/{name}', [
     'as' => 'show_profile', 'uses' => 'ProfilesController@showProfile'
 ]);
+
 
 
 Route::resource('posts','PostsController');
