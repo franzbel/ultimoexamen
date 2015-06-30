@@ -1,13 +1,37 @@
 @extends('layouts.master')
 @section('title', 'Proyecto final')
+@section('estilo')
+    <style>
+        body{
+            background-image: url('/rino.jpg');
+            background-size: cover;
+            background-repeat: repeat;
+        }
+        .contenedor{
+            background-color: #122b40;
+            width: auto;
+            opacity: 0.9;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-bottom: 20px;
+            border-radius: 15px;
+            float: right;
+            color: #ffffff;
+        }
+        input{
+            color: #000000;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                {{--INICIAR SECION--}}
-                <h3>Iniciar sesion</h3>
-                {!! Form::open(array('url' => 'auth/login', 'method'=>'post')) !!}
-                    {!! Form::label('email', 'Correo Electronico', array('class'=>'awesomw')) !!}
+
+                <div class="contenedor">
+                    {{--INICIAR SECION--}}
+                    <h3>Iniciar sesion</h3>
+                    {!! Form::open(array('url' => 'auth/login', 'method'=>'post')) !!} <br/>
+                    {!! Form::label('email', 'Correo Electronico', array('class'=>'awesomw')) !!} <br/>
                     {!! Form::text('email') !!} <br/>
 
                     {!! Form::label('password', 'Contraseña', array('class'=>'awesomw')) !!} <br/>
@@ -15,16 +39,16 @@
 
                     {!! Form::checkbox('remember') !!} Recuerdame <br/>
 
-                    {!! Form::submit('Iniciar') !!} <br/>
-                {!! Form::close() !!}
+                    {!! Form::submit('Iniciar', array('class'=>"btn btn-info")) !!} <br/>
+                    {!! Form::close() !!}
 
 
-                <h3>Registro</h3>
-                {!! Form::open(array('url' => 'auth/register', 'method'=>'post')) !!}
+                    <h3>Registro</h3>
+                    {!! Form::open(array('url' => 'auth/register', 'method'=>'post')) !!} <br/>
                     {!! Form::label('name', 'Nombre', array('class'=>'awesomw')) !!} <br/>
                     {!! Form::text('name') !!} <br/>
 
-                    {!! Form::label('email', 'Correo Electronico', array('class'=>'awesomw')) !!}
+                    {!! Form::label('email', 'Correo Electronico', array('class'=>'awesomw')) !!} <br/>
                     {!! Form::text('email') !!} <br/>
 
 
@@ -35,11 +59,11 @@
                     {!! Form::password('password_confirmation') !!} <br/>
 
 
-                    {!! Form::submit('Registrarse'); !!}
-                {!! Form::close() !!}
+                    {!! Form::submit('Registrarse', array('class'=>"btn btn-info")) !!} <br/>
+                    {!! Form::close() !!}
 
+                </div>
 
-            </div>
         </div>
     </div>
 @endsection

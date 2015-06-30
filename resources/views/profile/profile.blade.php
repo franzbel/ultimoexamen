@@ -19,6 +19,12 @@
             border-radius: 5px;
             padding: 1px;
         }
+        #img_perfil{
+            max-width: 250px;
+            max-height: 250px;
+            border-radius: 5px;
+
+        }
 
     </style>
 @endsection
@@ -55,6 +61,8 @@
         <div class="row">
 
                 <div class="jumbotron">
+
+                    <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_perfil">
                     <h3>Foto</h3>
                     <h3>Nombre: {{$user->name}}</h3>
                     <h3>Siguiendo: 12</h3>
@@ -82,7 +90,7 @@
                                         <td colspan="6"  id="separador"></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" colspan="1">Foto</td>
+                                        <td rowspan="2" colspan="1"><img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_icono"></td>
                                         <td colspan="5">{{$post->user->name}}</td>
                                     </tr>
                                     <tr>

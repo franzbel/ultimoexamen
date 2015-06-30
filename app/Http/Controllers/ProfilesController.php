@@ -15,6 +15,28 @@ use Illuminate\Support\Facades\DB;
 
 class ProfilesController extends Controller
 {
+    public  function choosePhoto(){
+        return view('profile.choose_photo');
+    }
+    public  function savePhoto(Request $request)
+    {
+
+        if ($request->file('image')->isValid()){
+
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'.'.$extension;
+
+            $request->file('image')->move("uploads/", $fileName);
+        }
+        $input = $request->all();
+        $input["image"] = "/uploads/".$fileName;
+        $usuario = Auth::user();
+        $usuario->image = "/uploads/".$fileName;;
+        $usuario->save();
+
+        return redirect('index');
+
+    }
     public function showProfile($name)
     {
         $user = User::where('name',$name)->first();

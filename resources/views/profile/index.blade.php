@@ -64,7 +64,7 @@
                                 <td colspan="6"  id="separador"></td>
                             </tr>
                             <tr>
-                                <td rowspan="2" colspan="1">Foto</td>
+                                <td rowspan="2" colspan="1"><img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_icono"></td>
                                 <td colspan="5">{{$post->user->name}}</td>
                             </tr>
                             <tr>

@@ -7,6 +7,15 @@
     {!! Html::style('assets/css/bootstrap.css') !!}
     <title>App Name - @yield('title')</title>
     @yield('estilo')
+    <style>
+        #img_icono {
+            max-width: 45px;
+            max-height: 45px;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -24,6 +33,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @if (!Auth::guest())
+                        <li>
+                            <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_icono">
+                        </li>
                         <li>
                             <a href="{{route('show_profile', Auth::user()->name)}}" class="">{{ Auth::user()->name }}</a>
 

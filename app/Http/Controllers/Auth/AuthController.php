@@ -35,7 +35,7 @@ class AuthController extends Controller
     }
 
 
-    protected $redirectPath = '/index';
+    protected $redirectPath = '/photo';
     /**
      * Get a validator for an incoming registration request.
      *
@@ -68,6 +68,8 @@ class AuthController extends Controller
             'user_id'=>$user->id,
             'idol_id'=>$user->id
         ]);
+
+
         return $user;
 
     }

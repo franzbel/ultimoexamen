@@ -23,6 +23,14 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
 
+Route::get('/photo', [
+    'as' => 'choose_photo', 'uses' => 'ProfilesController@choosePhoto'
+]);
+
+Route::post('/save', [
+    'as' => 'save_photo', 'uses' => 'ProfilesController@savePhoto'
+]);
+
 Route::get('/index', [
     'as' => 'show_index', 'uses' => 'ProfilesController@showIndex'
 ]);
