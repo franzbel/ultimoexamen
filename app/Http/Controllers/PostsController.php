@@ -14,6 +14,7 @@ class PostsController extends Controller
         $post = new Post($request->all());
 
         $post->save();
+
         return (redirect()->back());
     }
 }

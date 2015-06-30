@@ -1,7 +1,6 @@
-
-
 @extends('layouts.master')
 @section('title', 'Proyecto final')
+
 @section('estilo')
     <style>
         table{
@@ -9,11 +8,47 @@
         }
         .boton{
             float: left;
-            padding: 5px;
+            padding: 0px 5px 0px 0px;
+        }
+        #form_review{
+            display: none;
+        }
+        #separador{
+            width: 100%;
+            background-color: #1b6d85;
+            border-radius: 5px;
+            padding: 1px;
         }
 
     </style>
 @endsection
+
+@section('script')
+    <script>
+
+        function mostrarForm(){
+            var  boton = document.getElementById("btn-review");
+            var formulario = document.getElementById("form_review");
+            boton.addEventListener("click", MouseClick);
+            function MouseClick(e){
+                boton.style.display = "none";
+                formulario.style.display = "initial";
+            }
+        }
+
+        function cargarFunciones(){
+
+            mostrarForm();
+        }
+
+        window.onload = cargarFunciones;
+    </script>
+@endsection
+
+
+
+
+
 @section('content')
 
     <div class="container">
@@ -43,27 +78,33 @@
                         <tbody>
 
                         @foreach($posts as $post)
-
                                     <tr>
-                                        <td rowspan="2" colspan="1">Foto</td>
-                                        <td colspan="5">Nombre</td>
+                                        <td colspan="6"  id="separador"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5">Fecha</td>
+                                        <td rowspan="2" colspan="1">Foto</td>
+                                        <td colspan="5">{{$post->user->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">{{$post->created_at}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">{{$post->body}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="1" class="boton">
-                                            <a class="btn btn-info" href="#" role="button">
-                                                <span class="glyphicon glyphicon-comment"></span> 12
-                                            </a>
+
+                                            <button type="button" class="btn btn-info" id="btn-review">
+                                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>5
+                                            </button>
+                                            <div id="form_review">
+                                                @include('partials.form_comentar')
+                                            </div>
                                         </td>
                                         <td colspan="1" class="boton">
-                                            <a class="btn btn-info" href="#" role="button">
-                                                <span class="glyphicon glyphicon-share-alt"></span>34
-                                            </a>
+
+                                                @include('partials.form_repostear')
+
                                         </td>
                                         <td colspan="1" class="boton">
                                             <a class="btn btn-info" href="#" role="button">
@@ -75,6 +116,7 @@
                                                 <span class="glyphicon glyphicon-thumbs-down"></span>23
                                             </a>
                                         </td>
+                                        <td colspan="2"></td>
 
                                     </tr>
 

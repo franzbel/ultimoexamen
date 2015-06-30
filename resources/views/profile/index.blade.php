@@ -61,7 +61,7 @@
                     @foreach($user->idols as $idolo)
                         @foreach($user->find($idolo->idol_id)->posts as $post)
                             <tr>
-                                <td colspan="3"  id="separador"></td>
+                                <td colspan="6"  id="separador"></td>
                             </tr>
                             <tr>
                                 <td rowspan="2" colspan="1">Foto</td>
@@ -99,7 +99,7 @@
                                         <span class="glyphicon glyphicon-thumbs-down"></span>23
                                     </a>
                                 </td>
-                                <td colspan="3"></td>
+                                <td colspan="2"></td>
                             </tr>
 
                         @endforeach
