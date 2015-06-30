@@ -74,6 +74,9 @@
                         @include('partials.form_seguir')
                     @endif
                 </div>
+                <div class="jumbotron">
+                    <h4>SABIAS QUE LA PALABRA MAS USADA EN LOS POSTS ES: - {{$mas_frecuentes}}</h4>
+                </div>
                 <div class="form_publicar">
                     {!! Form::open(array('route' => 'posts.store', 'method'=>'post')) !!}
                         {!! Form::hidden('user_id',  Auth::id()) !!}

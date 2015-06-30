@@ -43,6 +43,12 @@ Route::post('/search_comment', [
     'as' => 'search_comment', 'uses' => 'ProfilesController@searchComment'
 ]);
 
+Route::get('/count_words', [
+    'as' => 'count_words', 'uses' => 'ProfilesController@countWords'
+]);
+
+
+
 
 Route::get('/{name}', [
     'as' => 'show_profile', 'uses' => 'ProfilesController@showProfile'

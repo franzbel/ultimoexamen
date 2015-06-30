@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\post;
+use App\Post;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -42,13 +42,15 @@ class ProfilesController extends Controller
     {
         $user = User::where('name',$name)->first();
         $posts = $user->posts;
-        return view('profile.profile', compact('posts','user'));
+        $mas_frecuentes = $this->countWords();
+        return view('profile.profile', compact('posts','user','mas_frecuentes'));
     }
 
     public function showIndex()
     {
         $user = Auth::user();
-        return view('profile.index', compact('user'));
+        $mas_frecuentes = $this->countWords();
+        return view('profile.index', compact('user', 'mas_frecuentes'));
     }
 
     public function searchPerson(Request $request)
@@ -67,4 +69,37 @@ class ProfilesController extends Controller
         return view('profile.found_comments', compact('posts'));
 
     }
+
+    protected function countWords(){
+         $post = null;
+        $array[] = " ";
+        foreach(Post::all() as $post){
+             $array[] = $post->body;
+        }
+
+        array_walk($array, create_function('&$i,$k','$i=" $k=\"$i\"";'));
+        $p_string = implode($array,"");
+
+
+        $freqData = array();
+        foreach( str_word_count( $post, 1 ) as $words ){
+
+            array_key_exists( $words, $freqData ) ? $freqData[ $words ]++ : $freqData[ $words ] = 1;
+        }
+        $list = '';
+        arsort($freqData);
+        foreach ($freqData as $word=>$count){
+            if ($count > 2){
+                $list .= "$word ";
+            }
+        }
+        if (empty($list)){
+            $list = "No existen suficientes palabras duplicadas para determinar popularidad";
+        }
+
+        return($list);
+    }
+
 }
+
+

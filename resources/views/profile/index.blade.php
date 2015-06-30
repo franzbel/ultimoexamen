@@ -30,8 +30,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-                <div>
-                    <h3>SABIAS QUE LA PALABRA MAS USADA EN LOS POSTS ES: </h3>
+                <div class="jumbotron">
+                    <h4>SABIAS QUE LA PALABRA MAS USADA EN LOS POSTS ES: - {{$mas_frecuentes}}</h4>
                 </div>
                 <div class="form_publicar">
                     {!! Form::open(array('route' => 'posts.store', 'method'=>'post')) !!}
@@ -50,7 +50,7 @@
                                 <td colspan="6"  id="separador"></td>
                             </tr>
                             <tr>
-                                <td rowspan="2" colspan="1"><img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_icono"></td>
+                                <td rowspan="2" colspan="1"><img src="{{ ($post->user->image == null) ? '/uploads/15707.jpg' : $post->user->image}}" alt="" id="img_icono"></td>
                                 <td colspan="5">{{$post->user->name}}</td>
                             </tr>
                             <tr>
