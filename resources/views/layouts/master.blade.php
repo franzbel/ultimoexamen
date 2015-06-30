@@ -42,9 +42,11 @@
     @yield('content')
 
     {{--SCRIPTS--}}
-    {!! Html::script('assets/js/jquery.min.js') !!}
+    @yield('script')
+    {!! Html::script('assets/js/jquery-1.11.3.min.js') !!}
     {!! Html::script('assets/js/bootstrap.min.js') !!}
     {!! Html::script('assets/js/docs.min.js') !!}
+
 </body>
 </html>
 

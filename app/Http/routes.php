@@ -36,6 +36,10 @@ Route::resource('posts','PostsController');
 Route::resource('idols','IdolsController',
     ['only'=>['store']]);
 
+Route::resource('comments','CommentsController',
+    ['only'=>['store']]);
+
+
 Route::get('/', function () {
     return view('welcome');
 });

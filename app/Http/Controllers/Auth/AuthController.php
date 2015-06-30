@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Idol;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -58,10 +59,16 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        Idol::create([
+            'user_id'=>$user->id,
+            'idol_id'=>$user->id
+        ]);
+        return $user;
+
     }
 }
