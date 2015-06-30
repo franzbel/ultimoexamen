@@ -54,10 +54,17 @@ class ProfilesController extends Controller
     public function searchPerson(Request $request)
     {
         $name = Input::get('nombre');
-        $users = User::where('name',$name)->get();
+        $users = User::where('name','LIKE',"%$name%")->get();
 
         return view('profile.found', compact('users'));
 
     }
+    public function searchComment(Request $request)
+    {
+        $word = Input::get('palabra');
+//        dd($name);
+        $posts = Post::where('body','LIKE',"%$word%")->get();
+        return view('profile.found_comments', compact('posts'));
 
+    }
 }

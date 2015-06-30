@@ -34,12 +34,27 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @if (!Auth::guest())
+                        <li>
+
+                            {!! Form::open(array('route' =>'search_comment', 'method'=>'post')) !!}
+                            <div style="padding-top: 7px">
+                                <div class="form-group" style="float: left; ">
+                                    <input type="text" class="form-control" placeholder="Buscar post" name="palabra">
+                                </div>
+                                <button type="submit" class="btn btn-default">Buscar</button>
+                            </div>
+
+
+                            {!! Form::close() !!}
+
+
+                        </li>
                        <li>
 
                            {!! Form::open(array('route' =>'search', 'method'=>'post')) !!}
                            <div style="padding-top: 7px">
                                <div class="form-group" style="float: left; ">
-                                   <input type="text" class="form-control" placeholder="Buscar articulo" name="nombre">
+                                   <input type="text" class="form-control" placeholder="Buscar persona" name="nombre">
                                </div>
                                <button type="submit" class="btn btn-default">Buscar</button>
                            </div>

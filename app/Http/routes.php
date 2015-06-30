@@ -39,6 +39,10 @@ Route::post('/search', [
     'as' => 'search', 'uses' => 'ProfilesController@searchPerson'
 ]);
 
+Route::post('/search_comment', [
+    'as' => 'search_comment', 'uses' => 'ProfilesController@searchComment'
+]);
+
 
 Route::get('/{name}', [
     'as' => 'show_profile', 'uses' => 'ProfilesController@showProfile'

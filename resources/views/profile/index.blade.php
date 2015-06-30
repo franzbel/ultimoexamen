@@ -30,7 +30,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-
+                <div>
+                    <h3>SABIAS QUE LA PALABRA MAS USADA EN LOS POSTS ES: </h3>
+                </div>
                 <div class="form_publicar">
                     {!! Form::open(array('route' => 'posts.store', 'method'=>'post')) !!}
                         {!! Form::hidden('user_id',  Auth::id()) !!}
