@@ -16,10 +16,11 @@
             padding-bottom: 20px;
             border-radius: 15px;
             float: right;
-            color: #ffffff;
+            color: #985f0d;
         }
         input{
             color: #000000;
+
         }
     </style>
 @endsection
@@ -57,6 +58,10 @@
 
                     {!! Form::label('password_confirmation', 'Confirmar contraseña', array('class'=>'awesomw')) !!} <br/>
                     {!! Form::password('password_confirmation') !!} <br/>
+
+                    {!! Form::label('country', 'Seleccione su pais') !!} <br/>
+                    {!! Form::select('country', array('0' => 'Bolivia', '1' => 'Colombia', '2' => 'Argentina'), '1') !!}
+                    <br/>
 
 
                     {!! Form::submit('Registrarse', array('class'=>"btn btn-info")) !!} <br/>

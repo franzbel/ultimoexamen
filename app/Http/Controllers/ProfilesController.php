@@ -100,6 +100,18 @@ class ProfilesController extends Controller
         return($list);
     }
 
+//    EXAMEN************************************************************************************************************
+    public function cambiarPais()
+    {
+        $id_nuevo_pais = Input::get('country');
+        $user = Auth::user();
+        $user->country_id = $id_nuevo_pais;
+        $user->save();
+        return (redirect()->back());
+    }
+
+//    EXAMEN************************************************************************************************************
+
 }
 
 

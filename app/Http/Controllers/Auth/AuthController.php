@@ -63,6 +63,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'country_id' => $data['country'],
         ]);
         Idol::create([
             'user_id'=>$user->id,

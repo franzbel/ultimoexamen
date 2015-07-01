@@ -60,6 +60,15 @@
     <div class="container">
         <div class="row">
 
+                <div>
+                    <h3>Cambia donde naciste:</h3>
+                        {!! Form::open(array('url' => 'cambiar_pais', 'method'=>'post')) !!} <br/>
+                            {!! Form::label('country', 'Seleccione su pais') !!} <br/>
+                            {!! Form::select('country', array('0' => 'Bolivia', '1' => 'Colombia', '2' => 'Argentina'), '1') !!}
+                            <br/>
+                            {!! Form::submit('Cambiar', array('class'=>"btn btn-info")) !!} <br/>
+                        {!! Form::close() !!}
+                </div>
                 <div class="jumbotron">
 
                     <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_perfil">
@@ -68,7 +77,7 @@
                     <h3>Siguiendo: {{$user->idols->count()-1}}</h3>
                     <h3>Seguidores: {{App\Idol::where('idol_id', $user->id)->count()-1}}</h3>
                     <h3>Publicaciones: {{$user->posts->count()}}</h3>
-
+                    <h3>Nacionalidad:{{ App\Country::where('id',$user->country_id)->first()->name}}</h3>
 
                     @if($user->id != Auth::id())
                         @include('partials.form_seguir')
@@ -93,11 +102,14 @@
                                         <td colspan="6"  id="separador"></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" colspan="1"><img src="{{ ($post->user->image == null) ? '/uploads/15707.jpg' : $post->user->image}}" alt="" id="img_icono"></td>
+                                        <td rowspan="3" colspan="1"><img src="{{ ($post->user->image == null) ? '/uploads/15707.jpg' : $post->user->image}}" alt="" id="img_icono"></td>
                                         <td colspan="5">{{$post->user->name}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">{{$post->created_at}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">{{App\Country::where('id',$post->user->country_id)->first()->name}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="6">{{$post->body}}</td>

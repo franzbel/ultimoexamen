@@ -47,7 +47,12 @@ Route::get('/count_words', [
     'as' => 'count_words', 'uses' => 'ProfilesController@countWords'
 ]);
 
+//EXAMEN****************************************************************************************************************
+Route::post('/cambiar_pais', [
+    'as' => 'cambiar_pais', 'uses' => 'ProfilesController@cambiarPais'
+]);
 
+//EXAMEN****************************************************************************************************************
 
 
 Route::get('/{name}', [

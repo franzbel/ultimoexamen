@@ -37,9 +37,14 @@
                     {!! Form::open(array('route' => 'posts.store', 'method'=>'post')) !!}
                         {!! Form::hidden('user_id',  Auth::id()) !!}
                         {!! Form::textarea('body',null, ['class'=>'form-control', 'maxlength'=>140, 'rows'=>2]) !!}
+                        {!! Form::label('country_id', 'Seleccione su pais') !!} <br/>
+                        {!! Form::select('country_id', array('0' => 'Bolivia', '1' => 'Colombia', '2' => 'Argentina'), '1') !!}
+                    <br/>
                         <button type="submit"  class="btn btn-primary">Postear</button>
                     {!! Form::close() !!}
                 </div>
+
+
             <div>
                 <table class="table">
                     <tbody>
@@ -50,11 +55,14 @@
                                 <td colspan="6"  id="separador"></td>
                             </tr>
                             <tr>
-                                <td rowspan="2" colspan="1"><img src="{{ ($post->user->image == null) ? '/uploads/15707.jpg' : $post->user->image}}" alt="" id="img_icono"></td>
+                                <td rowspan="3" colspan="1"><img src="{{ ($post->user->image == null) ? '/uploads/15707.jpg' : $post->user->image}}" alt="" id="img_icono"></td>
                                 <td colspan="5">{{$post->user->name}}</td>
                             </tr>
                             <tr>
                                 <td colspan="5">{{$post->created_at}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">{{App\Country::where('id',$post->user->country_id)->first()->name}}</td>
                             </tr>
                             <tr>
                                 <td colspan="6">{{$post->body}}</td>
